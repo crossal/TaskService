@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Boot Exemple</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(tasks)}">
+        <h2>Task List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Command</th>
+                <th>Path</th>
+                <th>Working Directory</th>
+                <th>Status</th>
+                <th>Output</th>
+                <th>Error</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.id}"><a href="/task/${task.id}">Id</a></td>
+                <td th:text="${task.command}">command</td>
+                <td th:text="${task.path}">path</td>
+                <td th:text="${task.workingDirectory}">working directory</td>
+                <td th:text="${task.status}">status</td>
+                <td th:text="${task.output}">output</td>
+                <td th:text="${task.error}">error</td>
+                <td><a th:href="${ '/task/' + task.id}">View</a></td>
+                <td><a th:href="${'/task/edit/' + task.id}">Edit</a></td>
+                <td><a th:href="${'/task/delete/' + task.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
